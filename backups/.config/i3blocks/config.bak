@@ -1,0 +1,13 @@
+[time]
+command=date '+%Y-%m-%d %H:%M'
+interval=1
+
+#[cpu]
+#command=grep 'cpu ' /proc/stat
+#interval=5
+
+
+[volume]
+command=pamixer --get-volume-human | sed 's/.*/ &/'
+interval=1
+markup=pango

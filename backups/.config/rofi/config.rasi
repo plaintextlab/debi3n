@@ -1,0 +1,20 @@
+configuration{
+    modi: "run,window,combi";
+    icon-theme: "Gruvbox dark";
+    show-icons: true;
+    terminal: "alacritty";
+    drun-display-format: "{icon} {name}";
+    location: 0;
+    disable-history: false;
+    hide-scrollbar: true;
+    display-combi: " 🖥️  All ";
+    display-run: " 󰜎 Run ";
+    display-window: " 󱂬  Window";
+    sidebar-mode: true;
+    font: "IBM Plex Mono 10";
+
+} 
+
+@theme "~/.config/rofi/themes/gruvbox.rasi"
+
+

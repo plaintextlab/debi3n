@@ -1,0 +1,23 @@
+[global]
+corner_radius = 0
+icon_position = left
+icon_theme = "oomox-Everforest-Dark"
+max_icon_size = 16
+icon_corner_radius = 0
+frame_color = "#7fbbb3"
+
+[urgency_low]
+background = "#2b3339"
+foreground = "#d3c6aa"
+frame_color = "#7a8478"
+
+[urgency_normal]
+background = "#2b3339"
+foreground = "#d3c6aa"
+frame_color = "#7fbbb3"
+
+[urgency_critical]
+background = "#2b3339"
+foreground = "#e67e80"
+frame_color = "#e67e80"
+

@@ -1,0 +1,467 @@
+#- Defaults
+set $DEFAULT_BROWSER "firefox"
+set $DEFAULT_BROWSER_PRIVATE "firefox --private-window"
+set $DEFAULT_TERMINAL "alacritty"
+set $DEFAULT_FILEMANAGER "pcmanfm"
+
+
+
+set $WALLPAPER_DIR ~/Pictures/Wallpapers/*
+
+# Theme - use any one
+#include ~/.config/i3/themes/gruvbox.conf
+include ~/.config/i3/themes/nord.conf
+
+# Monitor config
+include ~/.config/i3/config.d/monitor_extended_displays.conf
+#include ~/.config/i3/config.d/monitor_duplicate_displays.conf
+
+
+set $mod Mod4
+
+########################################################
+##						Appearance
+########################################################
+
+#font pango:monospace 16
+#font pango:DejaVu Sans Mono 14
+#font pango:JetBrainsMono Nerd Font 14
+font pango:IBM Plex Mono 14
+
+
+########################################################
+##						Task Bar
+########################################################
+
+# Uncomment polybar if you use polybar
+#exec_always --no-startup-id ~/.config/polybar/launch.sh
+
+#Check gruvbox.conf for bar config
+#bar {
+#    status_command i3blocks
+#    tray_output primary
+#}
+
+
+
+
+
+########################################################
+##						Autostart
+########################################################
+# Start XDG autostart .desktop files using dex. See also
+# https://wiki.archlinux.org/index.php/XDG_Autostart
+exec --no-startup-id dex --autostart --environment i3
+
+# Compositor for transparency and shadows
+exec --no-startup-id picom
+
+#polkit session -> Authorisation popups where you enter your password for authentication
+# Below works for arch, install polkit-gnome
+#exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+# For Debian 13, install mate-polkit
+#exec --no-startup-id /usr/lib/mate-polkit/mate-polkit-agent
+
+
+
+# No screen blanking - I want my system to always on, no sleep no lockscreen
+exec --no-startup-id xset s off -dpms
+
+# XDG desktop portal for proper GTK dialogs and sandboxed apps
+#exec --no-startup-id /usr/lib/xdg-desktop-portal-gtk
+
+# Set wallpaper at startup
+exec --no-startup-id feh --randomize --bg-fill $WALLPAPER_DIR
+
+# NetworkManager is the most popular way to manage wireless networks on Linux,
+# and nm-applet is a desktop environment-independent system tray GUI for it.
+exec --no-startup-id dbus-launch nm-applet
+
+# Notification daemon
+exec --no-startup-id dunst
+
+exec --no-startup-id dbus-run-session i3
+
+exec --no-startup-id mpd
+
+# Auto start gnome keyring so it wont ask again and again - eg. starting Brave Browser
+exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=ssh,secrets,pkcs11
+
+########################################################
+##						Keyboard Shortcuts
+########################################################
+
+# Volume controls
+bindsym XF86AudioRaiseVolume exec --no-startup-id ~/.config/i3/scripts/volume_slider.sh up
+bindsym XF86AudioLowerVolume exec --no-startup-id ~/.config/i3/scripts/volume_slider.sh down
+bindsym XF86AudioMute exec --no-startup-id ~/.config/i3/scripts/volume_slider.sh toggle
+
+
+# Play / Pause, Stop, Next, Previous buttons on Keyboard - Install playerctl
+bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
+bindsym XF86AudioStop exec --no-startup-id playerctl stop
+bindsym XF86AudioNext exec --no-startup-id playerctl next
+bindsym XF86AudioPrev exec --no-startup-id playerctl previous
+
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# move tiling windows via drag & drop by left-clicking into the title bar,
+# or left-clicking anywhere into the window while holding the floating modifier.
+tiling_drag modifier titlebar
+
+# start a terminal
+#bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec $DEFAULT_TERMINAL
+
+
+# Music
+bindsym $mod+m exec --no-startup-id flatpak run io.github.htkhiem.Euphonica
+
+# Start browser
+bindsym $mod+b exec --no-startup-id $DEFAULT_BROWSER
+bindsym $mod+Shift+b exec --no-startup-id $DEFAULT_BROWSER_PRIVATE
+
+# kill focused window
+bindsym $mod+Shift+q kill
+bindsym $mod+q kill
+
+# start dmenu (a program launcher)
+#bindsym $mod+d exec --no-startup-id dmenu_run
+# A more modern dmenu replacement is rofi:
+bindsym $mod+d exec "rofi -modi drun,run -show drun"
+# There also is i3-dmenu-desktop which only displays applications shipping a
+# .desktop file. It is a wrapper around dmenu, so you need that installed.
+#bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+
+# change focus
+#bindsym $mod+j focus left
+#bindsym $mod+k focus down
+#bindsym $mod+l focus up
+#bindsym $mod+semicolon focus right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# Alt+Tab: cycle forward within current workspace
+bindsym Mod1+Tab focus next
+# Alt+Shift+Tab: cycle backward within current workspace
+bindsym Mod1+Shift+Tab focus prev
+
+#bindsym Mod1+Tab [workspace=__focused__] focus next
+#bindsym Mod1+Shift+Tab [workspace=__focused__] focus prev
+
+
+# move focused window
+#bindsym $mod+Shift+j move left
+#bindsym $mod+Shift+k move down
+#bindsym $mod+Shift+l move up
+#bindsym $mod+Shift+semicolon move right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# split in horizontal orientation
+bindsym $mod+h split h
+
+# split in vertical orientation
+bindsym $mod+Shift+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+#bindsym $mod+e exec --no-startup-id kitty -e spf
+bindsym $mod+e exec --no-startup-id $DEFAULT_FILEMANAGER
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+x layout toggle split
+bindsym $mod+l exec --no-startup-id ~/.config/i3/scripts/i3_layout.sh
+
+
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+# bindsym $mod+a focus parent
+
+# focus the child container
+#bindsym $mod+d focus child
+
+# Night light
+bindsym $mod+n exec --no-startup-id redshift -O 3500
+bindsym $mod+Shift+n exec --no-startup-id redshift -x
+
+# Change wallpaper
+bindsym $mod+Shift+w exec --no-startup-id feh --randomize --bg-fill $WALLPAPER_DIR
+
+# XKill
+bindsym $mod+k exec --no-startup-id xkill
+
+# Change audio output device
+bindsym $mod+p exec --no-startup-id ~/.config/i3/scripts/audio-device-switch
+
+# Define names for default workspaces for which we configure key bindings later on.
+# We use variables to avoid repeating the names in multiple places.
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+# logout menu
+bindsym $mod+Shift+l exec --no-startup-id ~/.config/i3/scripts/powermenu
+
+# switch to workspace
+bindsym $mod+1 workspace number $ws1
+bindsym $mod+2 workspace number $ws2
+bindsym $mod+3 workspace number $ws3
+bindsym $mod+4 workspace number $ws4
+bindsym $mod+5 workspace number $ws5
+bindsym $mod+6 workspace number $ws6
+bindsym $mod+7 workspace number $ws7
+bindsym $mod+8 workspace number $ws8
+bindsym $mod+9 workspace number $ws9
+bindsym $mod+0 workspace number $ws10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace number $ws1
+bindsym $mod+Shift+2 move container to workspace number $ws2
+bindsym $mod+Shift+3 move container to workspace number $ws3
+bindsym $mod+Shift+4 move container to workspace number $ws4
+bindsym $mod+Shift+5 move container to workspace number $ws5
+bindsym $mod+Shift+6 move container to workspace number $ws6
+bindsym $mod+Shift+7 move container to workspace number $ws7
+bindsym $mod+Shift+8 move container to workspace number $ws8
+bindsym $mod+Shift+9 move container to workspace number $ws9
+bindsym $mod+Shift+0 move container to workspace number $ws10
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+# exit i3 (logs you out of your X session)
+#bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym j resize shrink width 10 px or 10 ppt
+        bindsym k resize grow height 10 px or 10 ppt
+        bindsym l resize shrink height 10 px or 10 ppt
+        bindsym semicolon resize grow width 10 px or 10 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape or $mod+r
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+
+bindsym $mod+Ctrl+Right move workspace to output right
+bindsym $mod+Ctrl+Left  move workspace to output left
+
+
+
+
+# ddc monitor brightness contrast
+bindsym XF86MonBrightnessUp   exec --no-startup-id ddcutil --bus=10 setvcp 10 +10
+bindsym XF86MonBrightnessDown exec --no-startup-id ddcutil --bus=10 setvcp 10 -10
+bindsym $mod+Shift+period exec --no-startup-id ddcutil --bus=10 setvcp 12 +10
+bindsym $mod+Shift+comma exec --no-startup-id ddcutil --bus=10 setvcp 12 -10
+
+
+#Screenshots
+# Fullscreen
+bindsym Print exec --no-startup-id flameshot full -p ~/Pictures/Screenshots -c
+# Rectangular area
+bindsym Shift+Print exec --no-startup-id flameshot gui -p ~/Pictures/Screenshots -c
+# Active window
+#bindsym Alt+Print exec --no-startup-id flameshot screen -p ~/Pictures/Screenshots -c
+
+#Conky widgets
+exec --no-startup-id conky -c ~/.config/conky/quote.conf
+exec --no-startup-id conky -c ~/.config/conky/widgets.conf
+for_window [class="conky"] floating enable, border none, sticky enable
+
+
+# Brightness contrast using ddc
+#bindsym F6 exec --no-startup-id ~/.config/i3/scripts/backlight_ddc.sh b inc 10 && ~/.config/i3/scripts/backlight_ddc.sh c inc 10
+#bindsym F5 exec --no-startup-id ~/.config/i3/scripts/backlight_ddc.sh b dec 10 && ~/.config/i3/scripts/backlight_ddc.sh c dec 10
+
+bindsym $mod+F1 exec --no-startup-id ~/.config/i3/scripts/backlight_ddc_set.sh 0 1
+bindsym $mod+F2 exec --no-startup-id ~/.config/i3/scripts/backlight_ddc_set.sh 10 1
+bindsym $mod+F3 exec --no-startup-id ~/.config/i3/scripts/backlight_ddc_set.sh 20 1
+bindsym $mod+F4 exec --no-startup-id ~/.config/i3/scripts/backlight_ddc_set.sh 30 1
+bindsym $mod+F5 exec --no-startup-id ~/.config/i3/scripts/backlight_ddc_set.sh 40 1
+bindsym $mod+F6 exec --no-startup-id ~/.config/i3/scripts/backlight_ddc_set.sh 50 1
+bindsym $mod+F7 exec --no-startup-id ~/.config/i3/scripts/backlight_ddc_set.sh 60 1
+bindsym $mod+F8 exec --no-startup-id ~/.config/i3/scripts/backlight_ddc_set.sh 70 1
+bindsym $mod+F9 exec --no-startup-id ~/.config/i3/scripts/backlight_ddc_set.sh 80 1
+bindsym $mod+F10 exec --no-startup-id ~/.config/i3/scripts/backlight_ddc_set.sh 90 1
+bindsym $mod+F11 exec --no-startup-id ~/.config/i3/scripts/backlight_ddc_set.sh 100 1
+
+bindsym $mod+Shift+F1 exec --no-startup-id ~/.config/i3/scripts/backlight_ddc_set.sh 0 2
+bindsym $mod+Shift+F2 exec --no-startup-id ~/.config/i3/scripts/backlight_ddc_set.sh 10 2
+bindsym $mod+Shift+F3 exec --no-startup-id ~/.config/i3/scripts/backlight_ddc_set.sh 20 2
+bindsym $mod+Shift+F4 exec --no-startup-id ~/.config/i3/scripts/backlight_ddc_set.sh 30 2
+bindsym $mod+Shift+F5 exec --no-startup-id ~/.config/i3/scripts/backlight_ddc_set.sh 40 2
+bindsym $mod+Shift+F6 exec --no-startup-id ~/.config/i3/scripts/backlight_ddc_set.sh 50 2
+bindsym $mod+Shift+F7 exec --no-startup-id ~/.config/i3/scripts/backlight_ddc_set.sh 60 2
+bindsym $mod+Shift+F8 exec --no-startup-id ~/.config/i3/scripts/backlight_ddc_set.sh 70 2
+bindsym $mod+Shift+F9 exec --no-startup-id ~/.config/i3/scripts/backlight_ddc_set.sh 80 2
+bindsym $mod+Shift+F10 exec --no-startup-id ~/.config/i3/scripts/backlight_ddc_set.sh 90 2
+bindsym $mod+Shift+F11 exec --no-startup-id ~/.config/i3/scripts/backlight_ddc_set.sh 100 2
+
+
+# Clipboard manager
+exec --no-startup-id copyq
+bindsym $mod+v exec --no-startup-id copyq show
+for_window [class="copyq"] floating enable, sticky enable, border none
+for_window [class="copyq"] resize set 600 600
+for_window [class="copyq"] move position center
+
+
+bindsym $mod+Tab workspace next
+bindsym $mod+Shift+Tab workspace prev
+
+# Float nmtui window
+for_window [class="Alacritty" title="nmtui"] floating enable
+
+# Float pulsemixer window
+for_window [class="Alacritty" title="pulsemixer"] floating enable
+
+# Float imv
+for_window [class="imv"] floating enable
+
+
+
+# Hide window titlebar - comment to show window titles
+#default_border pixel 1
+#default_floating_border pixel 1
+default_border normal 1
+default_floating_border normal 1
+
+
+# Gaps between windows - looks cool
+gaps inner 2
+gaps outer 1
+smart_gaps on
+
+
+exec --no-startup-id blueman-applet
+
+# Startup sound
+#exec --no-startup-id sh -c 'sleep 2 && mpg123 -o pulse ~/.config/i3/sound/vista.mp3'
+
+# Webapps
+bindsym $mod+a exec --no-startup-id ~/.config/i3/scripts/webapps.sh
+
+# Scratchpad
+bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+minus scratchpad show
+
+# Software center
+bindsym $mod+o exec --no-startup-id gnome-software
+
+# AI Chatbot
+bindsym $mod+c exec --no-startup-id flatpak run io.github.pejuko.follamac
+
+
+########################################################
+##						Workspace rules
+########################################################
+# Focus on the newly opened window as soon as it opens
+focus_on_window_activation focus
+# to disable focus on certain apps
+#for_window [class="..."] focus disable
+
+#assign [class="Alacritty"] workspace $ws1
+assign [class="firefox-esr"] workspace $ws2
+
+#assign [class="Pcmanfm"] workspace $ws3
+#for_window [class="Pcmanfm"] floating enable
+#for_window [class="Pcmanfm"] move position center
+
+assign [class="steam"] workspace $ws5
+assign [class="Lutris"] workspace $ws5
+assign [class="euphonica"] workspace $ws7
+
+assign [class="Free Download Manager"] workspace $ws8
+assign [class="gnome-software"] workspace $ws8
+assign [class="qBittorrent"] workspace $ws8
+
+assign [class="KeePassXC"] workspace $ws2
+for_window [class="KeePassXC"] floating enable
+
+
+#assign [class="Follamac"] workspace $ws9
+for_window [class="Follamac"] floating enable
+for_window [class="Follamac"] move position center
+
+
+# Float all exe programs and center those - like windows setups and programs
+for_window [title=".*\\.exe$"] floating enable
+for_window [title=".*\\.exe$"] floating enable, move position center
+
+
+for_window [class="mpv"] floating enable
+for_window [class="mpv"] move position center
+for_window [class="mpv"] border none
+
+
+for_window [class="gnome-calculator"] floating enable
+for_window [class="gnome-calculator"] move position center
+
+
+for_window [class="Sxiv"] floating enable
+for_window [class="Sxiv"] move position center
+for_window [class="Sxiv"] border none
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

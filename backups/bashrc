@@ -1,0 +1,19 @@
+alias logout='pkill -KILL -u $USER'
+alias bye='shutdown now'
+alias ll='eza -lah --icons'
+alias i3conf='pluma ~/.config/i3/config'
+alias getclass='xprop | grep CLASS'
+alias refreshpkg='sudo reflector --verbose --latest 20 --protocol https --sort rate --save /etc/pacman.d'
+alias bb='~/.config/i3/scripts/backlight_ddc_set.sh'
+
+#if [[ $(tty) == *"pts"* ]]; then
+#    fastfetch --config examples/3
+#fi
+
+
+
+eval "$(starship init bash)"
+
+
+export PATH="$PATH:/sbin"
+

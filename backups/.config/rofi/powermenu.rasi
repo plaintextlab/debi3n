@@ -1,0 +1,9 @@
+/*******************************************************
+ * ROFI configs i3 powermenu for EndeavourOS
+ * Maintainer: joekamprad [joekamprad //a_t// endeavouros.com]
+ *******************************************************/
+
+
+@import "~/.config/rofi/config.rasi"
+/* Insert theme modifications after this */
+
