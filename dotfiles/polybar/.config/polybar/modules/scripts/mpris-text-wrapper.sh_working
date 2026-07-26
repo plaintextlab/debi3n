@@ -1,0 +1,64 @@
+#!/usr/bin/env bash
+# /home/qube/.config/polybar/modules/scripts/mpris-text-wrapper.sh
+# Final wrapper: uses explicit zscroll shim path (pyenv) or python module fallback.
+set -uo pipefail
+
+MAIN="/home/qube/.config/polybar/modules/scripts/mpris-polybar.sh"
+# your zscroll shim discovered earlier
+ZSCROLL_SHIM="/home/qube/.pyenv/shims/zscroll"
+
+# prefer shim if executable
+if [[ -x "$ZSCROLL_SHIM" ]]; then
+  ZSCROLL_CMD="$ZSCROLL_SHIM"
+# else prefer python module if available
+elif python3 -c "import importlib,sys; importlib.util.find_spec('zscroll') or sys.exit(1)" >/dev/null 2>&1; then
+  ZSCROLL_CMD="python3 -m zscroll"
+else
+  ZSCROLL_CMD=""
+fi
+
+# Helper: trim whitespace
+trim() {
+  local var="$*"
+  var="${var#"${var%%[![:space:]]*}"}"
+  var="${var%"${var##*[![:space:]]}"}"
+  printf '%s' "$var"
+}
+
+# One-shot fallback when MAIN missing
+if [[ ! -x "$MAIN" ]]; then
+  PLAYER=$(playerctl -l 2>/dev/null | head -n1 || true)
+  [[ -z "$PLAYER" ]] && { echo ""; exit 0; }
+  STATUS=$(playerctl --player="$PLAYER" status 2>/dev/null || echo "")
+  [[ -z "$STATUS" || "$STATUS" == "Stopped" ]] && { echo ""; exit 0; }
+
+  SHOW=$(playerctl --player="$PLAYER" metadata --format '{{ artist }} — {{ title }}' 2>/dev/null || true)
+  [[ -z "$SHOW" || "$SHOW" == " — " ]] && SHOW=$(playerctl --player="$PLAYER" metadata --format '{{ title }}' 2>/dev/null || true)
+  SHOW="$(trim "$SHOW")"
+  [[ -z "$SHOW" ]] && { echo ""; exit 0; }
+
+  if [[ -n "$ZSCROLL_CMD" ]]; then
+    printf '%s\n' "$SHOW" | $ZSCROLL_CMD -l 40 -d 0.18 -b "..." --scroll-padding "   "
+  else
+    echo "$SHOW"
+  fi
+  exit 0
+fi
+
+# Main loop (tail mode). Read producer output and display SHOW (marquee if possible)
+while IFS= read -r line; do
+  IFS='|' read -r STATE PLAYER STATUS SHOW ARTPATH URL <<< "$line"
+  SHOW="$(trim "${SHOW:-}")"
+
+  if [[ "$STATE" == "NONE" ]] || [[ "$STATUS" == "Stopped" ]] || [[ -z "$PLAYER" ]] || [[ -z "$SHOW" ]]; then
+    echo ""   # collapsible in polybar
+    continue
+  fi
+
+  if [[ -n "$ZSCROLL_CMD" ]]; then
+    # feed newline-terminated text to zscroll/pymodule version
+    printf '%s\n' "$SHOW" | $ZSCROLL_CMD -l 40 -d 0.18 -b "..." --scroll-padding "   "
+  else
+    echo "$SHOW"
+  fi
+done < <( "$MAIN" )

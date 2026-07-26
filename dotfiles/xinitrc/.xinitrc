@@ -1,0 +1,1 @@
+exec dbus-run-session -- systemd-cat --identifier=i3 i3
