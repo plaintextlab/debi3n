@@ -1,0 +1,199 @@
+# Defaults
+set $DEFAULT_BROWSER "firefox"
+set $DEFAULT_BROWSER_PRIVATE "firefox --private-window"
+set $DEFAULT_TERMINAL alacritty
+set $DEFAULT_FILEMANAGER "nemo"
+set $WALLPAPER_DIR $HOME/Pictures/Wallpapers/*
+set $DEFAULT_MUSIC_PLAYER rmpc
+set $DEFAULT_VIDEO_PLAYER mpv --idle
+
+set $I3_SCRIPTS_PATH $HOME/.config/i3/scripts
+set $ROFI_SCRIPTS_PATH $HOME/.config/rofi/scripts
+set $SCRIPTS_PATH $HOME/.config/scripts
+
+set $win Mod4
+set $alt Mod1
+set $ctrl Control
+set $shift Shift
+
+# Define names for default workspaces for which we configure key bindings later on.
+# We use variables to avoid repeating the names in multiple places.
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+# Config files
+include ~/.config/i3/config.d/appearance.conf
+include ~/.config/i3/config.d/autostart.conf
+include ~/.config/i3/config.d/keybindings.conf
+include ~/.config/i3/config.d/windows-rules.conf
+
+
+# Theme - use any one
+include ~/.config/i3/themes/gruvbox.conf
+#include ~/.config/i3/themes/nord.conf
+
+
+# Monitor config
+include ~/.config/i3/config.d/monitor_extended_displays.conf
+#include ~/.config/i3/config.d/monitor_duplicate_displays.conf
+
+
+
+
+# move tiling windows via drag & drop by left-clicking into the title bar,
+# or left-clicking anywhere into the window while holding the floating modifier.
+tiling_drag modifier titlebar
+
+
+
+# Clipboard manager
+#exec --no-startup-id copyq
+#bindsym $win+v exec --no-startup-id copyq show
+#for_window [class="copyq"] floating enable, sticky enable, border none
+#for_window [class="copyq"] resize set 600 600
+#for_window [class="copyq"] move position center
+
+exec --no-startup-id clipmenud
+bindsym $win+v exec --no-startup-id clipmenu
+
+
+bindsym $win+Tab workspace next
+bindsym $win+Shift+Tab workspace prev
+
+# Float nmtui window
+for_window [title="nmtui"] floating enable
+
+# Float pulsemixer window
+for_window [title="pulsemixer"] floating enable
+
+# Float imv
+for_window [class="imv"] floating enable
+
+
+# Hide window titlebar - comment to show window titles
+#default_border pixel 1
+#default_floating_border pixel 1
+default_border normal 1
+default_floating_border normal 1
+
+
+
+
+# Scratchpad
+bindsym $win+Shift+minus move scratchpad
+bindsym $win+minus scratchpad show
+
+# Software center
+bindsym $win+o exec --no-startup-id gnome-software
+
+
+
+########################################################
+##						Workspace rules
+########################################################
+# Focus on the newly opened window as soon as it opens
+focus_on_window_activation focus
+# to disable focus on certain apps
+#for_window [class="..."] focus disable
+
+#assign [class="Alacritty"] workspace $ws1
+assign [class="firefox-esr"] workspace $ws2
+
+#assign [class="Pcmanfm"] workspace $ws3
+#for_window [class="Pcmanfm"] floating enable
+#for_window [class="Pcmanfm"] move position center
+
+assign [class="steam"] workspace $ws5
+assign [class="Lutris"] workspace $ws5
+assign [class="euphonica"] workspace $ws7
+
+assign [class="Free Download Manager"] workspace $ws8
+assign [class="gnome-software"] workspace $ws8
+assign [class="qBittorrent"] workspace $ws8
+
+assign [class="KeePassXC"] workspace $ws2
+for_window [class="KeePassXC"] floating enable
+
+
+#assign [class="Follamac"] workspace $ws9
+for_window [class="Follamac"] floating enable
+for_window [class="Follamac"] move position center
+
+
+# Float all exe programs and center those - like windows setups and programs
+for_window [title=".*\\.exe$"] floating enable
+for_window [title=".*\\.exe$"] floating enable, move position center
+
+
+for_window [class="mpv"] floating enable
+for_window [class="mpv"] move position center
+for_window [class="mpv"] border none
+
+
+for_window [class="gnome-calculator"] floating enable
+for_window [class="gnome-calculator"] move position center
+
+
+for_window [class="Sxiv"] floating enable
+for_window [class="Sxiv"] move position center
+for_window [class="Sxiv"] border none
+
+
+
+
+exec --no-startup-id xsettingsd
+
+
+
+
+bindsym $win+c exec galculator
+for_window [class="Galculator"] floating enable
+for_window [class="Galculator"] floating enable, resize set 400 500, move position center
+
+
+bindsym $win+period exec --no-startup-id emoji-picker
+
+
+for_window [class="Yad"] floating enable, resize set 360 180
+#for_window [class="Recording"] floating enable, resize set 360 120
+#for_window [class="Saved"] floating enable, resize set 320 100
+
+
+bindsym Mod4+Mod1+space [workspace=__focused__] floating toggle
+#bindsym Mod4+Mod1+space exec ~/.config/i3/toggle-float.sh
+
+exec --no-startup-id udiskie --tray --notify
+
+for_window [class="feh"] floating enable, resize set 1280 720
+for_window [class="Nsxiv"] floating enable, resize set 1280 720
+
+
+
+bindsym $win+F12 exec --no-startup-id ~/.config/scripts/change-input.sh
+
+#bindsym $win+Shift+s sticky toggle
+bindsym $win+Shift+s exec --no-startup-id ~/.config/i3/scripts/sticky-toggle.sh
+
+
+exec --no-startup-id numlockx on
+
+
+for_window [title="Webcam Preview"] floating enable, sticky enable, border pixel 1, move absolute position 1550 px 800 px
+
+bindsym $win+Control+w exec $DEFAULT_TERMINAL --title "wall-picker" -e ~/.config/scripts/wallpaper-picker.sh
+for_window [title="wall-picker"] floating enable, resize set 1000 650, move position center
+
+
+
+
+for_window [class="^webapp-.*"] floating enable
+for_window [class="^webapp-.*"] resize set 1280 720
+for_window [class="^webapp-.*"] move position center

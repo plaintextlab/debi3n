@@ -1,0 +1,7 @@
+[Nemo Action]
+Name=Open Terminal Here
+Comment=Open terminal in this folder
+Exec=gnome-terminal --working-directory=%P
+Selection=None
+Extensions=any
+Shortcut=<Ctrl><Alt>t

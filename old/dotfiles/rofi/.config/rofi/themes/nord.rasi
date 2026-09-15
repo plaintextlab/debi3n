@@ -1,0 +1,140 @@
+/*******************************************************
+ * ROFI Nord Dark — JetBrains Mono
+ * Nord palette: https://www.nordtheme.com
+ *******************************************************/
+
+/* Nord color reference:
+   Polar Night:  #2e3440  #3b4252  #434c5e  #4c566a
+   Snow Storm:   #d8dee9  #e5e9f0  #eceff4
+   Frost:        #8fbcbb  #88c0d0  #81a1c1  #5e81ac
+   Aurora:       #bf616a  #d08770  #ebcb8b  #a3be8c  #b48ead
+*/
+
+* {
+    bg-col:        #2e3440;
+    bg-col-light:  #3b4252;
+    border-col:    #434c5e;
+    selected-col:  #4c566a;
+    blue:          #81a1c1;
+    fg-col:        #e5e9f0;
+    fg-col2:       #bf616a;
+    grey:          #4c566a;
+    width: 600;
+    font: "JetBrains Mono 10";
+}
+element-text, element-icon, mode-switcher {
+    background-color: inherit;
+    text-color:       inherit;
+}
+window {
+    height: 360px;
+    border: 3px;
+    border-color: @border-col;
+    background-color: @bg-col;
+}
+mainbox {
+    background-color: @bg-col;
+}
+inputbar {
+    children: [prompt,entry];
+    background-color: @bg-col;
+    border-radius: 5px;
+    padding: 2px;
+}
+prompt {
+    background-color: @blue;
+    padding: 6px;
+    text-color: @bg-col;
+    border-radius: 3px;
+    margin: 20px 0px 0px 20px;
+}
+textbox-prompt-colon {
+    expand: false;
+    str: ":";
+}
+entry {
+    padding: 6px;
+    margin: 20px 0px 0px 10px;
+    text-color: @fg-col;
+    background-color: @bg-col;
+}
+listview {
+    border: 0px 0px 0px;
+    padding: 6px 0px 0px;
+    margin: 10px 0px 0px 20px;
+    columns: 2;
+    lines: 5;
+    background-color: @bg-col;
+}
+element {
+    padding: 5px;
+    background-color: @bg-col;
+    text-color: @fg-col;
+}
+element-icon {
+    size: 25px;
+}
+element selected {
+    background-color:  @selected-col;
+    text-color: @fg-col2;
+}
+mode-switcher {
+    spacing: 0;
+}
+button {
+    padding: 10px;
+    background-color: @bg-col-light;
+    text-color: @grey;
+    vertical-align: 0.5;
+    horizontal-align: 0.5;
+}
+button selected {
+    background-color: @bg-col;
+    text-color: @blue;
+}
+message {
+    background-color: @bg-col-light;
+    margin: 2px;
+    padding: 2px;
+    border-radius: 5px;
+}
+textbox {
+    padding: 6px;
+    margin: 20px 0px 0px 20px;
+    text-color: @blue;
+    background-color: @bg-col-light;
+}
+
+/*******************************************************
+ * ROFI Nord Dark (rgba structure)
+ *******************************************************/
+* {
+    selected-normal-foreground:  rgba ( 46, 52, 64, 100 % );    /* #2e3440 */
+    foreground:                  rgba ( 229, 233, 240, 100 % );  /* #e5e9f0 */
+    normal-foreground:           @foreground;
+    alternate-normal-background: rgba ( 67, 76, 94, 100 % );    /* #434c5e */
+    red:                         rgba ( 191, 97, 106, 100 % );   /* #bf616a */
+    selected-urgent-foreground:  rgba ( 229, 233, 240, 100 % );  /* #e5e9f0 */
+    blue:                        rgba ( 129, 161, 193, 100 % );  /* #81a1c1 */
+    urgent-foreground:           rgba ( 191, 97, 106, 100 % );   /* #bf616a */
+    alternate-urgent-background: rgba ( 76, 86, 106, 100 % );    /* #4c566a */
+    active-foreground:           rgba ( 143, 188, 187, 100 % );  /* #8fbcbb */
+    lightbg:                     rgba ( 236, 239, 244, 100 % );  /* #eceff4 */
+    selected-active-foreground:  rgba ( 46, 52, 64, 100 % );     /* #2e3440 */
+    alternate-active-background: rgba ( 76, 86, 106, 100 % );    /* #4c566a */
+    background:                  rgba ( 46, 52, 64, 95 % );      /* #2e3440 */
+    alternate-normal-foreground: @foreground;
+    normal-background:           @background;
+    lightfg:                     rgba ( 216, 222, 233, 100 % );  /* #d8dee9 */
+    selected-normal-background:  rgba ( 136, 192, 208, 100 % );  /* #88c0d0 */
+    border-color:                rgba ( 67, 76, 94, 100 % );     /* #434c5e */
+    spacing:                     2;
+    separatorcolor:              rgba ( 46, 52, 64, 100 % );     /* #2e3440 */
+    urgent-background:           rgba ( 67, 76, 94, 100 % );     /* #434c5e */
+    selected-urgent-background:  rgba ( 191, 97, 106, 100 % );   /* #bf616a */
+    alternate-urgent-foreground: @urgent-foreground;
+    background-color:            rgba ( 0, 0, 0, 0 % );
+    alternate-active-foreground: @active-foreground;
+    active-background:           rgba ( 67, 76, 94, 100 % );     /* #434c5e */
+    selected-active-background:  rgba ( 163, 190, 140, 100 % );  /* #a3be8c */
+}

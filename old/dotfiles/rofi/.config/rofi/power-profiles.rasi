@@ -1,0 +1,9 @@
+/*******************************************************
+ * ROFI configs sway/i3 power-profiles-switcher for EndeavourOS
+ * Maintainer: joekamprad <joekamprad@endeavouros.com>
+ *******************************************************/
+
+
+@import "~/.config/rofi/config.rasi"
+/* Insert theme modifications after this */
+

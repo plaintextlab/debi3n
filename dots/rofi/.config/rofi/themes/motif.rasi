@@ -1,0 +1,129 @@
+* {
+    bg-col:        #2e2e2b;
+    bg-col-light:  #3a3a34;
+    border-col:    #62625a;
+    selected-col:  #46463f;
+    blue:          #5d7a9e;
+    fg-col:        #d8d8ce;
+    fg-col2:       #b84a4a;
+    grey:          #98988c;
+    width: 1000;
+    font: "Iosevka 14";
+}
+element-text, element-icon , mode-switcher {
+    background-color: inherit;
+    text-color:       inherit;
+}
+window {
+    height: 360px;
+    border: 3px;
+    border-color: @border-col;
+    background-color: @bg-col;
+}
+mainbox {
+    background-color: @bg-col;
+}
+inputbar {
+    children: [prompt,entry];
+    background-color: @bg-col;
+    border-radius: 5px;
+    padding: 2px;
+}
+prompt {
+    background-color: @blue;
+    padding: 6px;
+    text-color: @bg-col;
+    border-radius: 3px;
+    margin: 20px 0px 0px 20px;
+}
+textbox-prompt-colon {
+    expand: false;
+    str: ":";
+}
+entry {
+    padding: 6px;
+    margin: 20px 0px 0px 10px;
+    text-color: @fg-col;
+    background-color: @bg-col;
+}
+listview {
+    border: 0px 0px 0px;
+    padding: 6px 0px 0px;
+    margin: 10px 0px 0px 20px;
+    columns: 2;
+    lines: 5;
+    background-color: @bg-col;
+}
+element {
+    padding: 5px;
+    background-color: @bg-col;
+    text-color: @fg-col  ;
+}
+element-icon {
+    size: 25px;
+}
+element selected {
+    background-color:  @selected-col ;
+    text-color: @fg-col2  ;
+}
+mode-switcher {
+    spacing: 0;
+  }
+button {
+    padding: 10px;
+    background-color: @bg-col-light;
+    text-color: @grey;
+    vertical-align: 0.5; 
+    horizontal-align: 0.5;
+}
+button selected {
+  background-color: @bg-col;
+  text-color: @blue;
+}
+message {
+    background-color: @bg-col-light;
+    margin: 2px;
+    padding: 2px;
+    border-radius: 5px;
+}
+textbox {
+    padding: 6px;
+    margin: 20px 0px 0px 20px;
+    text-color: @blue;
+    background-color: @bg-col-light;
+}
+/*******************************************************
+ * ROFI Motif/CDE Dark (structure preserved, unused block —
+ * nothing above references these rgba vars, kept only
+ * because the original file had it)
+ *******************************************************/
+* {
+    selected-normal-foreground:  rgba ( 46, 46, 43, 100 % );   /* #2e2e2b */
+    foreground:                  rgba ( 216, 216, 206, 100 % );/* #d8d8ce */
+    normal-foreground:           @foreground;
+    alternate-normal-background: rgba ( 58, 58, 52, 100 % );  /* #3a3a34 */
+    red:                         rgba ( 184, 74, 74, 100 % );  /* #b84a4a */
+    selected-urgent-foreground:  rgba ( 216, 216, 206, 100 % );/* #d8d8ce */
+    blue:                        rgba ( 93, 122, 158, 100 % ); /* #5d7a9e */
+    urgent-foreground:           rgba ( 184, 74, 74, 100 % );  /* #b84a4a */
+    alternate-urgent-background: rgba ( 70, 70, 63, 100 % );  /* #46463f */
+    active-foreground:           rgba ( 138, 122, 158, 100 % );/* #8a7a9e */
+    lightbg:                     rgba ( 216, 216, 206, 100 % );/* #d8d8ce */
+    selected-active-foreground:  rgba ( 46, 46, 43, 100 % );   /* #2e2e2b */
+    alternate-active-background: rgba ( 70, 70, 63, 100 % );  /* #46463f */
+    background:                  rgba ( 46, 46, 43, 95 % );   /* #2e2e2b */
+    alternate-normal-foreground: @foreground;
+    normal-background:           @background;
+    lightfg:                     rgba ( 152, 152, 140, 100 % );/* #98988c */
+    selected-normal-background:  rgba ( 184, 152, 90, 100 % ); /* #b8985a */
+    border-color:                rgba ( 98, 98, 90, 100 % );/* #62625a */
+    spacing:                     2;
+    separatorcolor:              rgba ( 26, 26, 22, 100 % );  /* #1a1a16 */
+    urgent-background:           rgba ( 58, 58, 52, 100 % );  /* #3a3a34 */
+    selected-urgent-background:  rgba ( 184, 74, 74, 100 % ); /* #b84a4a */
+    alternate-urgent-foreground: @urgent-foreground;
+    background-color:            rgba ( 0, 0, 0, 0 % );
+    alternate-active-foreground: @active-foreground;
+    active-background:           rgba ( 58, 58, 52, 100 % );  /* #3a3a34 */
+    selected-active-background:  rgba ( 122, 143, 90, 100 % );/* #7a8f5a */
+}

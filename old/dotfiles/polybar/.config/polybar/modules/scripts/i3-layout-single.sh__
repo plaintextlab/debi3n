@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+# Prints current i3 layout icon + label once, then exits.
+# Polybar calls this every second via interval=1.
+
+I3MSG=$(command -v i3-msg) || { echo "i3-msg not found"; exit 1; }
+JQ=$(command -v jq) || { echo "jq not found"; exit 1; }
+
+# Colors (Gruvbox-ish)
+COLOR_BG="#3c3836"
+COLOR_FG="#83a598"
+
+# Icons (swap for your font/glyphs as you like)
+ICON_TILE=""
+ICON_STACK=""
+ICON_TAB=""
+
+LABEL_TILE="Tile"
+LABEL_STACK="Stack"
+LABEL_TAB="Tab"
+
+layout="$($I3MSG -t get_tree | $JQ -r '.. | select(.focused?==true) | .layout' 2>/dev/null | head -n1)"
+
+case "$layout" in
+  tabbed)
+    ICON="$ICON_TAB";   LABEL="$LABEL_TAB"   ;;
+  stacking)
+    ICON="$ICON_STACK"; LABEL="$LABEL_STACK" ;;
+  split*|splith|splitv|"")
+    ICON="$ICON_TILE";  LABEL="$LABEL_TILE"  ;;
+esac
+
+printf "%%{B%s}%%{F%s}  %s %s  %%{B-}%%{F-}\n" "$COLOR_BG" "$COLOR_FG" "$ICON" "$LABEL"

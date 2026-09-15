@@ -1,0 +1,242 @@
+# ~/.config/starship.toml
+# Tokyo Night palette — beautiful, modern, readable
+
+palette = "motif"
+
+add_newline = true
+command_timeout = 1000
+scan_timeout = 30
+
+# Two-line prompt with all the good stuff
+format = """
+$os\
+$username\
+$hostname\
+$directory\
+$git_branch\
+$git_status\
+$git_state\
+$python\
+$nodejs\
+$rust\
+$golang\
+$java\
+$php\
+$docker_context\
+$kubernetes\
+$aws\
+$cmd_duration\
+$line_break\
+$character"""
+
+# ── OS icon ──────────────────────────────────────────────
+[os]
+disabled = false
+format = "[$symbol](bold fg:os_color) "
+
+[os.symbols]
+Ubuntu = "󰕈"
+Debian = "󰣚"
+Arch = "󰣇"
+Fedora = "󰣛"
+Macos = "󰀵"
+Windows = "󰍲"
+Linux = "󰌽"
+
+# ── Username ──────────────────────────────────────────────
+[username]
+show_always = false
+format = "[$user]($style) "
+style_user = "bold fg:user_color"
+style_root = "bold red"
+
+# ── Hostname (only on SSH) ────────────────────────────────
+[hostname]
+ssh_only = true
+format = "[@$hostname]($style) "
+style = "bold fg:host_color"
+
+# ── Directory ─────────────────────────────────────────────
+[directory]
+format = "[$path]($style)[$read_only]($read_only_style) "
+style = "bold fg:dir_color"
+read_only = " 󰌾"
+read_only_style = "red"
+truncation_length = 4
+truncate_to_repo = true
+home_symbol = "󰜥 ~"
+
+[directory.substitutions]
+"Documents" = "󰈙"
+"Downloads" = ""
+"Music" = "󰝚"
+"Pictures" = ""
+"Projects" = "󰲋"
+"Desktop" = ""
+
+# ── Git ───────────────────────────────────────────────────
+[git_branch]
+format = "on [$symbol$branch(:$remote_branch)]($style) "
+symbol = " "
+style = "bold fg:git_color"
+truncation_length = 25
+truncation_symbol = "…"
+
+[git_status]
+format = '([$all_status$ahead_behind]($style) )'
+style = "bold fg:git_status_color"
+conflicted = "⚡"
+ahead = "⇡${count}"
+behind = "⇣${count}"
+diverged = "⇕⇡${ahead_count}⇣${behind_count}"
+up_to_date = ""
+untracked = "󰋖 ${count}"
+stashed = " ${count}"
+modified = " ${count}"
+staged = " ${count}"
+renamed = "󰑕 ${count}"
+deleted = " ${count}"
+
+[git_state]
+format = '\([$state( $progress_current/$progress_total)]($style)\) '
+style = "bold yellow"
+
+# ── Languages ─────────────────────────────────────────────
+[nodejs]
+format = "via [ $version]($style) "
+style = "bold fg:node_color"
+detect_files = ["package.json", ".nvmrc", ".node-version"]
+detect_folders = ["node_modules"]
+
+[python]
+format = 'via [󰌠 $version( \($virtualenv\))]($style) '
+style = "bold fg:python_color"
+detect_extensions = ["py"]
+
+[rust]
+format = "via [ $version]($style) "
+style = "bold fg:rust_color"
+
+[golang]
+format = "via [ $version]($style) "
+style = "bold fg:go_color"
+
+[java]
+format = "via [ $version]($style) "
+style = "bold fg:java_color"
+detect_files = ["pom.xml", "build.gradle"]
+
+[php]
+format = "via [ $version]($style) "
+style = "bold fg:php_color"
+
+# ── Docker / K8s / Cloud ──────────────────────────────────
+[docker_context]
+format = "via [ $context]($style) "
+style = "bold fg:docker_color"
+only_with_files = true
+detect_files = ["docker-compose.yml", "docker-compose.yaml", "Dockerfile"]
+
+[kubernetes]
+format = "on [ $context\\($namespace\\)]($style) "
+style = "bold fg:k8s_color"
+disabled = false
+
+[aws]
+format = 'on [ ($profile)(\[$duration\])]($style) '
+style = "bold fg:aws_color"
+disabled = true   # enable if you use AWS
+
+[gcloud]
+disabled = true
+
+# ── Command duration ──────────────────────────────────────
+[cmd_duration]
+min_time = 2_000
+format = "[ $duration]($style) "
+style = "bold fg:duration_color"
+show_notifications = false
+
+# ── Prompt character ──────────────────────────────────────
+[character]
+success_symbol = "[❯](bold fg:prompt_ok)"
+error_symbol = "[❯](bold fg:prompt_err)"
+vimcmd_symbol = "[❮](bold fg:prompt_vim)"
+
+# ── Package (hide — too noisy) ────────────────────────────
+[package]
+disabled = true
+
+# ══════════════════════════════════════════════════════════
+# Tokyo Night Palette
+# ══════════════════════════════════════════════════════════
+[palettes.tokyo_night]
+os_color      = "#7aa2f7"
+user_color    = "#bb9af7"
+host_color    = "#e0af68"
+dir_color     = "#7dcfff"
+git_color     = "#9ece6a"
+git_status_color = "#f7768e"
+node_color    = "#9ece6a"
+python_color  = "#e0af68"
+rust_color    = "#f7768e"
+go_color      = "#7dcfff"
+java_color    = "#e0af68"
+php_color     = "#bb9af7"
+docker_color  = "#7aa2f7"
+k8s_color     = "#7aa2f7"
+aws_color     = "#e0af68"
+duration_color = "#565f89"
+prompt_ok     = "#9ece6a"
+prompt_err    = "#f7768e"
+prompt_vim    = "#e0af68"
+
+
+# ══════════════════════════════════════════════════════════
+# Nord Palette
+# ══════════════════════════════════════════════════════════
+[palettes.nord]
+os_color       = "#88c0d0"   # Nord8  — frost cyan
+user_color     = "#b48ead"   # Nord15 — aurora purple
+host_color     = "#ebcb8b"   # Nord13 — aurora yellow
+dir_color      = "#81a1c1"   # Nord9  — frost blue
+git_color      = "#a3be8c"   # Nord14 — aurora green
+git_status_color = "#bf616a" # Nord11 — aurora red
+node_color     = "#a3be8c"   # Nord14 — aurora green
+python_color   = "#ebcb8b"   # Nord13 — aurora yellow
+rust_color     = "#bf616a"   # Nord11 — aurora red
+go_color       = "#88c0d0"   # Nord8  — frost cyan
+java_color     = "#d08770"   # Nord12 — aurora orange
+php_color      = "#b48ead"   # Nord15 — aurora purple
+docker_color   = "#81a1c1"   # Nord9  — frost blue
+k8s_color      = "#5e81ac"   # Nord10 — frost deep blue
+aws_color      = "#ebcb8b"   # Nord13 — aurora yellow
+duration_color = "#4c566a"   # Nord3  — polar night light
+prompt_ok      = "#a3be8c"   # Nord14 — aurora green
+prompt_err     = "#bf616a"   # Nord11 — aurora red
+prompt_vim     = "#ebcb8b"   # Nord13 — aurora yellow
+
+
+# ══════════════════════════════════════════════════════════
+# Motif Palette
+# ══════════════════════════════════════════════════════════
+[palettes.motif]
+os_color       = "#5d7a9e"   # Motif blue — steel/frost accent
+user_color     = "#8a7a9e"   # Motif lavender
+host_color     = "#b8985a"   # Motif yellow/ochre
+dir_color      = "#4d6685"   # Motif sapphire
+git_color      = "#7a8f5a"   # Motif green
+git_status_color = "#b84a4a" # Motif red
+node_color     = "#7a8f5a"   # Motif green
+python_color   = "#b8985a"   # Motif yellow/ochre
+rust_color     = "#b84a4a"   # Motif red
+go_color       = "#5d7a9e"   # Motif blue
+java_color     = "#a67a4a"   # Motif peach/orange
+php_color      = "#8a7a9e"   # Motif lavender
+docker_color   = "#4d6685"   # Motif sapphire
+k8s_color      = "#3a4a5a"   # Motif deep blue
+aws_color      = "#b8985a"   # Motif yellow/ochre
+duration_color = "#62625a"   # Motif overlay grey
+prompt_ok      = "#7a8f5a"   # Motif green
+prompt_err     = "#b84a4a"   # Motif red
+prompt_vim     = "#b8985a"   # Motif yellow/ochre
