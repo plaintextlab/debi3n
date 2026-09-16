@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 sudo apt install -y copyq
 
 cat > ~/.config/systemd/user/copyq.service << 'EOF'
