@@ -3,10 +3,10 @@
     monitor = 0
     follow = mouse
     ### Geometry ###
-    width = 320
+    width = 400
     height = 200
     origin = top-right
-    offset = 16x48
+    offset = 20x60
     scale = 0
     notification_limit = 5
     ### Progress bar ###

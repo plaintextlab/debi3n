@@ -4,7 +4,7 @@ set $DEFAULT_BROWSER_PRIVATE "firefox --private-window"
 set $DEFAULT_TERMINAL alacritty
 set $DEFAULT_FILEMANAGER "nemo"
 set $WALLPAPER_DIR $HOME/Pictures/Wallpapers/*
-set $DEFAULT_MUSIC_PLAYER rmpc
+set $DEFAULT_MUSIC_PLAYER ncmpcpp
 set $DEFAULT_VIDEO_PLAYER mpv --idle
 
 set $I3_SCRIPTS_PATH $HOME/.config/i3/scripts
@@ -51,18 +51,6 @@ include ~/.config/i3/config.d/monitor_extended_displays.conf
 # move tiling windows via drag & drop by left-clicking into the title bar,
 # or left-clicking anywhere into the window while holding the floating modifier.
 tiling_drag modifier titlebar
-
-
-
-# Clipboard manager
-#exec --no-startup-id copyq
-#bindsym $win+v exec --no-startup-id copyq show
-#for_window [class="copyq"] floating enable, sticky enable, border none
-#for_window [class="copyq"] resize set 600 600
-#for_window [class="copyq"] move position center
-
-exec --no-startup-id clipmenud
-bindsym $win+v exec --no-startup-id clipmenu
 
 
 bindsym $win+Tab workspace next

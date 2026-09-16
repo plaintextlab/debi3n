@@ -21,10 +21,11 @@ fo() {
 
 
 alias ll='eza -lah --icons --git --group-directories-first'
-alias ii='sudo pacman -S --needed'
-alias rr='sudo pacman -Rns'
+alias ii='sudo apt install -y'
+alias rr='sudo apt remove'
 alias disk='ncdu /'
 alias tree='eza -a --icons --tree'
+alias reboot='/sbin/reboot'
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
