@@ -11,11 +11,29 @@ sudo apt install nvidia-driver-libs:i386 --install-recommends
 
 
 sudo apt install \
+xorg \
+xserver-xorg \
+xinit \
+x11-xserver-utils \
+x11-utils \
 libvulkan1 libvulkan1:i386 \
 nvidia-vulkan-icd \
 nvidia-vulkan-icd:i386 \
 vulkan-tools \
 steam \
+i3-wm \
+fastfetch \
+feh \
+dunst \
+picom \
+polybar \
+rofi \
+alacritty \
+starship \
+redshift \
+firefox-esr \
+nemo \
+mousepad \
 
 
 

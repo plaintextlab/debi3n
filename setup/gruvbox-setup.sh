@@ -18,6 +18,7 @@ wget "$(curl -s https://api.github.com/repos/SylEleuth/gruvbox-plus-icon-pack/re
   | cut -d '"' -f 4)"
 
 unzip gruvbox-plus-icon-pack-*.zip
+mkdir -p ~/.local/share/icons
 cp -rv Gruvbox-Plus-Dark Gruvbox-Plus-Light ~/.local/share/icons
 rm gruvbox-plus-icon-pack-*.zip
 rm -rf Gruvbox-Plus-Dark

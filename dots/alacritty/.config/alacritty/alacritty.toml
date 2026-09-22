@@ -1,5 +1,5 @@
 [font]
-size = 10
+size = 16
 
 [cursor.style]
 shape = "Underline"
@@ -10,19 +10,19 @@ blink_interval = 200 # Interval in milliseconds
 blink_timeout = 0
 
 [font.normal]
-family = "JetBrainsMono Nerd Font"
+family = "moreperfectdosvga"
 style = "Regular"
 
 [font.bold]
-family = "JetBrainsMono Nerd Font"
+family = "moreperfectdosvga"
 style = "Bold"
 
 [font.italic]
-family = "JetBrainsMono Nerd Font"
+family = "moreperfectdosvga"
 style = "Italic"
 
 [font.bold_italic]
-family = "JetBrainsMono Nerd Font"
+family = "moreperfectdosvga"
 style = "Bold Italic"
 
 [colors.primary]
