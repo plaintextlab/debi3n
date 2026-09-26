@@ -165,7 +165,7 @@ for_window [class="Nsxiv"] floating enable, resize set 1280 720
 
 
 
-bindsym $win+F12 exec --no-startup-id ~/.config/scripts/change-input.sh
+bindsym $win+F12 exec --no-startup-id ~/.config/scripts/script-change-input.sh
 
 #bindsym $win+Shift+s sticky toggle
 bindsym $win+Shift+s exec --no-startup-id ~/.config/i3/scripts/sticky-toggle.sh

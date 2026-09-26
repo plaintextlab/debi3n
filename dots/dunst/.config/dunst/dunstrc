@@ -35,7 +35,7 @@
     icon_theme = "Jetbrains Nerd Font"
     icon_corner_radius = 0
     ### Text ###
-    font = Jetbrains Nerd Font 14
+    font = moreperfectdosvga 14
     line_height = 2
     markup = full
     format = "<b>%s</b>\n%b"
