@@ -1,5 +1,5 @@
-[font]
-size = 16
+[general]
+import = ["~/.config/alacritty/font.toml"]
 
 [cursor.style]
 shape = "Underline"
@@ -8,22 +8,6 @@ blinking = "Always"  # Options: Always, Never, WhenFocused
 [cursor]
 blink_interval = 200 # Interval in milliseconds
 blink_timeout = 0
-
-[font.normal]
-family = "moreperfectdosvga"
-style = "Regular"
-
-[font.bold]
-family = "moreperfectdosvga"
-style = "Bold"
-
-[font.italic]
-family = "moreperfectdosvga"
-style = "Italic"
-
-[font.bold_italic]
-family = "moreperfectdosvga"
-style = "Bold Italic"
 
 [colors.primary]
 background = "#282828"

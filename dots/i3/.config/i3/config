@@ -31,9 +31,12 @@ set $ws10 "10"
 
 # Config files
 include ~/.config/i3/config.d/appearance.conf
+include ~/.config/i3/config.d/font.conf
 include ~/.config/i3/config.d/autostart.conf
 include ~/.config/i3/config.d/keybindings.conf
 include ~/.config/i3/config.d/windows-rules.conf
+include ~/.config/i3/config.d/workspace-defaults.conf
+
 
 
 # Theme - use any one

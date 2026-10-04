@@ -9,7 +9,9 @@
     grey:          #928374;
 
     width: 1000;
-    font: "moreperfectdosvga 14";
+    /*
+    *font: "moreperfectdosvga 14";
+    */
 }
 
 element-text, element-icon , mode-switcher {

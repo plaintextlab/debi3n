@@ -1,3 +1,4 @@
+@import "font.rasi"
 configuration{
     modi: "run,window,combi";
     icon-theme: "Gruvbox-Dark";
