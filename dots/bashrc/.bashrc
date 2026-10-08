@@ -42,3 +42,6 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+
+
+fortune | cowsay | lolcat

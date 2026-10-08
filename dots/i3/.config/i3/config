@@ -161,7 +161,8 @@ for_window [class="Yad"] floating enable, resize set 360 180
 bindsym Mod4+Mod1+space [workspace=__focused__] floating toggle
 #bindsym Mod4+Mod1+space exec ~/.config/i3/toggle-float.sh
 
-exec --no-startup-id udiskie --tray --notify
+#exec --no-startup-id udiskie --tray --notify
+exec --no-startup-id udiskie --tray --notify --config ~/.config/udiskie/config.yml
 
 for_window [class="feh"] floating enable, resize set 1280 720
 for_window [class="Nsxiv"] floating enable, resize set 1280 720
