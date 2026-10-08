@@ -44,4 +44,4 @@ unset __conda_setup
 
 
 
-fortune | cowsay | lolcat
+#fortune | cowsay | lolcat
