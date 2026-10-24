@@ -172,7 +172,7 @@ for_window [class="Nsxiv"] floating enable, resize set 1280 720
 bindsym $win+F12 exec --no-startup-id ~/.config/scripts/script-change-input.sh
 
 #bindsym $win+Shift+s sticky toggle
-bindsym $win+Shift+s exec --no-startup-id ~/.config/i3/scripts/sticky-toggle.sh
+bindsym $win+Shift+s exec --no-startup-id ~/.config/i3/scripts/i3-sticky-toggle.sh
 
 
 exec --no-startup-id numlockx on
@@ -180,7 +180,7 @@ exec --no-startup-id numlockx on
 
 for_window [title="Webcam Preview"] floating enable, sticky enable, border pixel 1, move absolute position 1550 px 800 px
 
-bindsym $win+Control+w exec $DEFAULT_TERMINAL --title "wall-picker" -e ~/.config/scripts/wallpaper-picker.sh
+bindsym $win+Control+w exec $DEFAULT_TERMINAL --title "wall-picker" -e ~/.config/scripts/script-wallpaper-picker.sh
 for_window [title="wall-picker"] floating enable, resize set 1000 650, move position center
 
 
